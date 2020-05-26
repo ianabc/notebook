@@ -50,12 +50,6 @@ def get_frontend_exporters():
                                          exporter_instance.file_extension))
             frontend_exporters.append(ExporterInfo(name, display))
 
-    # Ensure default_exporters are in frontend_exporters if not already
-    # This protects against nbconvert versions lower than 5.5
-    names = set(exporter.name.lower() for exporter in frontend_exporters)
-    for exporter in default_exporters:
-        if exporter.name not in names:
-            frontend_exporters.append(exporter)
 
     # Protect against nbconvert 5.5.0
     python_exporter = ExporterInfo(name='python', display='python (.py)')
